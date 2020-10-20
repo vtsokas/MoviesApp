@@ -1,0 +1,95 @@
+<?php
+// module/User/view/user/user/edit.phtml:
+
+$title = 'Edit user';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the title element:
+$name = $form->get('name');
+$name->setAttribute('class', 'form-control');
+$name->setAttribute('placeholder', 'Name');
+
+// This provides a default CSS class and placeholder text for the artist element:
+$surname = $form->get('surname');
+$surname->setAttribute('class', 'form-control');
+$surname->setAttribute('placeholder', 'Surname');
+
+$username = $form->get('username');
+$username->setAttribute('class', 'form-control');
+$username->setAttribute('placeholder', 'Username');
+
+$password = $form->get('password');
+$password->setAttribute('class', 'form-control');
+$password->setAttribute('placeholder', 'Password');
+
+$email = $form->get('email');
+$email->setAttribute('class', 'form-control');
+$email->setAttribute('placeholder', 'Email');
+
+$role = $form->get('role');
+$role->setAttribute('class', 'form-control');
+$role->setAttribute('placeholder', 'Role');
+
+$isConfirmed = $form->get('isConfirmed');
+$isConfirmed->setAttribute('class', 'form-control');
+$isConfirmed->setAttribute('placeholder', 'IsConfirmed');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('user', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($name) ?>
+    <?= $this->formElement($name) ?>
+    <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($surname) ?>
+    <?= $this->formElement($surname) ?>
+    <?= $this->formElementErrors()->render($surname, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($username) ?>
+    <?= $this->formElement($username) ?>
+    <?= $this->formElementErrors()->render($username, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($password) ?>
+    <?= $this->formElement($password) ?>
+    <?= $this->formElementErrors()->render($password, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($email) ?>
+    <?= $this->formElement($email) ?>
+    <?= $this->formElementErrors()->render($email, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($role) ?>
+    <?= $this->formElement($role) ?>
+    <?= $this->formElementErrors()->render($role, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($isConfirmed) ?>
+    <?= $this->formElement($isConfirmed) ?>
+    <?= $this->formElementErrors()->render($isConfirmed, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

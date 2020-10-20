@@ -1,0 +1,44 @@
+<?php
+$title = 'Users';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('user', array('action'=>'add'));?>">
+        <img src="<?= $this->basePath('img/add.jpg') ?>" height="20" alt="Add"/>
+    </a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Confirmed</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($users as $user) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($user->name);?></td>
+    <td><?php echo $this->escapeHtml($user->surname);?></td>
+    <td><?php echo $this->escapeHtml($user->username);?></td>
+    <td><?php echo $this->escapeHtml($user->email);?></td>
+    <td><?php echo $this->escapeHtml($user->role);?></td>
+    <td><?php if ($user->isConfirmed == "1") {?>
+        <img src="<?= $this->basePath('img/check.jpg') ?>" height="20" alt="Yes"/>
+    <?php }?></td>
+    <td>
+        <a href="<?php echo $this->url('user',
+            array('action'=>'edit', 'id' => $user->id));?>">
+            <img src="<?= $this->basePath('img/edit.png') ?>" height="20" alt="Edit"/>
+        </a>
+        <a href="<?php echo $this->url('user',
+            array('action'=>'delete', 'id' => $user->id));?>">
+            <img src="<?= $this->basePath('img/delete.jpg') ?>" height="20" alt="Delete"/>
+        </a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

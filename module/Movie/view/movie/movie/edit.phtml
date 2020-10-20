@@ -1,0 +1,75 @@
+<?php
+// module/Movie/view/movie/movie/edit.phtml:
+
+$title = 'Edit movie';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+// This provides a default CSS class and placeholder text for the title element:
+$title = $form->get('title');
+$title->setAttribute('class', 'form-control');
+$title->setAttribute('placeholder', 'Movie title');
+
+// This provides a default CSS class and placeholder text for the artist element:
+$startDate = $form->get('startDate');
+$startDate->setAttribute('class', 'form-control');
+$startDate->setAttribute('placeholder', 'Start date');
+
+$endDate = $form->get('endDate');
+$endDate->setAttribute('class', 'form-control');
+$endDate->setAttribute('placeholder', 'End date');
+
+$cinemaName = $form->get('cinemaName');
+$cinemaName->setAttribute('class', 'form-control');
+$cinemaName->setAttribute('placeholder', 'Cinema name');
+
+$category = $form->get('category');
+$category->setAttribute('class', 'form-control');
+$category->setAttribute('placeholder', 'Category');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('movie', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($title) ?>
+    <?= $this->formElement($title) ?>
+    <?= $this->formElementErrors()->render($title, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($startDate) ?>
+    <?= $this->formElement($startDate) ?>
+    <?= $this->formElementErrors()->render($startDate, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($endDate) ?>
+    <?= $this->formElement($endDate) ?>
+    <?= $this->formElementErrors()->render($endDate, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($cinemaName) ?>
+    <?= $this->formElement($cinemaName) ?>
+    <?= $this->formElementErrors()->render($cinemaName, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($category) ?>
+    <?= $this->formElement($category) ?>
+    <?= $this->formElementErrors()->render($category, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

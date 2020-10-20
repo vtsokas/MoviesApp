@@ -1,0 +1,34 @@
+
+<?php
+$title = 'Cinemas';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('cinema', array('action'=>'add'));?>">
+        <img src="<?= $this->basePath('img/add.jpg') ?>" height="20" alt="Add"/>
+    </a>
+</p>
+<table class="table">
+<tr>
+    <th>Name</th>
+    <th>Owner</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($cinemas as $cinema) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($cinema->name);?></td>
+    <td><?php echo $this->escapeHtml($users[+$cinema->ownerId]);?></td>
+    <td><span style="height:20px,width:20px" class="glyphicon glyphicon-pencil">
+        <a href="<?php echo $this->url('cinema',
+            array('action'=>'edit', 'id' => $cinema->id));?>">
+            <img src="<?= $this->basePath('img/edit.png') ?>" height="20" alt="Edit"/>
+        </a>
+        <a href="<?php echo $this->url('cinema',
+            array('action'=>'delete', 'id' => $cinema->id));?>">
+            <img src="<?= $this->basePath('img/delete.jpg') ?>" height="20" alt="Delete"/>
+        </a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
